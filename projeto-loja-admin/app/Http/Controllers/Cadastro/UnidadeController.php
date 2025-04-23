@@ -77,6 +77,12 @@ class UnidadeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $unidade = Unidade::find($id);
+            $unidade->delete();
+            return redirect()->route("unidade.index")->with("msg_sucesso", "Registro Excluído com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 }
