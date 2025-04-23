@@ -53,7 +53,9 @@ class UnidadeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dados["unidade"] = Unidade::find($id);
+        $dados["lista"] = Unidade::get();
+        return View('Cadastro.Unidade.Index', $dados);
     }
 
     /**
@@ -61,7 +63,13 @@ class UnidadeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $req = $request->except(["_token", "_method"]);
+        try {
+            Unidade::find($id)->update($req);
+            return redirect()->route("unidade.index")->with("msg_sucesso", "Registro Alterado com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 
     /**
