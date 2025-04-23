@@ -29,9 +29,9 @@ class CategoriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Categoria $request)
+    public function store(CategoriaRequest $request)
     {
-        $req = $request->exeption(["_token"]);
+        $req = $request->except(["_token"]);
         try {
             Categoria::Create($req);
             return redirect()->route("categoria.index")->with("msg_sucesso", "Registro Inserido com Sucesso");
@@ -85,4 +85,5 @@ class CategoriaController extends Controller
             return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
         }
     }
+
 }
