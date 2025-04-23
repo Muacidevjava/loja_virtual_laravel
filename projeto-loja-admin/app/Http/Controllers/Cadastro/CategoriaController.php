@@ -53,7 +53,9 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dados["categoria"] = Categoria::find($id);
+        $dados["lista"] = Categoria::get();
+        return View('Cadastro.Categoria.Index', $dados);
     }
 
     /**
@@ -61,7 +63,13 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $req = $request->except(["_token", "_method"]);
+        try {
+            Categoria::find($id)->update($req);
+            return redirect()->route("categoria.index")->with("msg_sucesso", "Registro Alterado com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 
     /**
@@ -69,6 +77,12 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $categoria = Categoria::find($id);
+            $categoria->delete();
+            return redirect()->route("categoria.index")->with("msg_sucesso", "Registro Excluído com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 }

@@ -10,17 +10,23 @@
                 </svg>
                 Lista de categorias
             </span>
-             
+
             <div class="caixa">
 
                 <div class="w-100 d-grid px-2 py-2">
-                    <form action="{{ route('categoria.store') }}" method="POST">
+
+                    @if (isset($categoria))
+                        <form action="{{ route('categoria.update', $categoria->id) }}" method="POST">
+                            @method('put')
+                        @else
+                            <form action="{{ route('categoria.store') }}" method="POST">
+                    @endif
                         @csrf
-                        <div class="radius-4 p-2 pt-0">
+                        <div class="{{ isset($categoria->categoria) ? 'bg-edit' : 'caixafield' }} radius-4 p-2 pt-0">
                             <div class="rows center-middle">
                                 <div class="col-9">
                                     <label class="text-label d-block text-branco">Nome </label>
-                                    <input type="text" name="categoria" class="form-campo">
+                                    <input type="text" name="categoria" value="{{ $categoria->categoria ?? old('categoria') }}" class="form-campo">
                                 </div>
                                 <div class="col-3 mt-0 pt-4">
                                     <input type="submit" value="Salvar" class="w-100 btn btn-roxo text-uppercase">
