@@ -3,7 +3,7 @@
 <div class="home Venda">
     <div class="rows">
         <div class="col-12 d-flex mb-4 justify-between">
-            <h1>Dashboard - ERP Mjailton</h1>
+            <h1>Dashboard - ERP</h1>
         </div>
         <div class="col-12">
             <div class="rows contas">

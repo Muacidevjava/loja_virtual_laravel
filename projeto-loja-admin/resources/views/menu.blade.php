@@ -2,7 +2,7 @@
     <a href="" class="logo d-block" style="background:none"></a>
     <img src="{{ asset('assets/img/logomin-zeus.svg') }}">
     </a>
-    <div class="logo-text">Projeto Zeus</div>
+    <div class="logo-text">Projeto ERP</div>
     <nav class="menuprincipal" id="principal">
         <ul class="menu-ul icones">
             <li><a href="">
