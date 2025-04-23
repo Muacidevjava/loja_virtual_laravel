@@ -12,3 +12,6 @@ Route::get('/', [HomeController::class, "index"] )->name("home");
 Route::resource("/status", StatusController::class);
 
 Route::resource("/categoria", CategoriaController::class);
+
+Route::put('/categorias/{id}', 'CategoriaController@update')->name('categoria.update');
+

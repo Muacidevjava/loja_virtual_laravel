@@ -10,75 +10,76 @@
                 </svg>
                 Lista de categorias
             </span>
-
+             
             <div class="caixa">
 
                 <div class="w-100 d-grid px-2 py-2">
-                    <form>
-
+                    <form action="{{ route('categoria.store') }}" method="POST">
+                        @csrf
                         <div class="radius-4 p-2 pt-0">
                             <div class="rows center-middle">
                                 <div class="col-9">
                                     <label class="text-label d-block text-branco">Nome </label>
-                                    <input type="text" class="form-campo">
+                                    <input type="text" name="categoria" class="form-campo">
                                 </div>
                                 <div class="col-3 mt-0 pt-4">
                                     <input type="submit" value="Salvar" class="w-100 btn btn-roxo text-uppercase">
                                 </div>
                             </div>
                         </div>
+
+                    </form>
                 </div>
-                </form>
+
             </div>
-
         </div>
-    </div>
 
-    <div class="col-12">
-        <div class="px-2">
-            <div class="tabela-responsiva pb-4">
-                <table cellpadding="0" cellspacing="0" id="dataTable" width="100%" class="categoria table">
-                    <thead>
-                        <tr>
-                            <th align="center">Id</th>
-                            <th align="left" width="70%">Nome</th>
-                            <th align="center">Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        @foreach ($lista as $l)
+        <div class="col-12">
+            <div class="px-2">
+                <div class="tabela-responsiva pb-4">
+                    <table cellpadding="0" cellspacing="0" id="dataTable" width="100%" class="categoria table">
+                        <thead>
                             <tr>
-                                <td align="center">{{ $l->id }}</td>
-                                <td align="left">{{ $l->categoria }}</td>
-                                <td align="center">
-                                    <a href="{{ route('categoria.edit', $l->id) }}"
-                                        class="d-inline-block btn btn-outline-roxo btn-pequeno"><i class="fas fa-edit"></i>
-                                        Editar</a>
-
-                                    <a href="javascript:;"
-                                        onclick="confirm('Tem Certeza?') ? document.getElementById('apagar{{ $l->id }}').submit() : '';"
-                                        class="d-inline-flex btn btn-outline-vermelho btn-pequeno gap-3">
-                                        <i class="fas fa-trash-alt"></i>
-                                        <form action="{{ route('categoria.destroy', $l->id) }}" method="POST"
-                                            id="apagar{{ $l->id }}">
-                                            @method('DELETE')
-                                            @csrf
-                                        </form>
-
-                                        Excluir
-                                    </a>
-                                </td>
+                                <th align="center">Id</th>
+                                <th align="left" width="70%">Nome</th>
+                                <th align="center">Ação</th>
                             </tr>
-                        @endforeach
+                        </thead>
+                        <tbody>
+
+                            @foreach ($lista as $l)
+                                <tr>
+                                    <td align="center">{{ $l->id }}</td>
+                                    <td align="left">{{ $l->categoria }}</td>
+                                    <td align="center">
+                                        <a href="{{ route('categoria.edit', $l->id) }}"
+                                            class="d-inline-block btn btn-outline-roxo btn-pequeno"><i
+                                                class="fas fa-edit"></i>
+                                            Editar</a>
+
+                                        <a href="javascript:;"
+                                            onclick="confirm('Tem Certeza?') ? document.getElementById('apagar{{ $l->id }}').submit() : '';"
+                                            class="d-inline-flex btn btn-outline-vermelho btn-pequeno gap-3">
+                                            <i class="fas fa-trash-alt"></i>
+                                            <form action="{{ route('categoria.destroy', $l->id) }}" method="POST"
+                                                id="apagar{{ $l->id }}">
+                                                @method('DELETE')
+                                                @csrf
+                                            </form>
+
+                                            Excluir
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
 
 
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 
     </div>
 @endsection

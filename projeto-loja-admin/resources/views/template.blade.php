@@ -15,11 +15,12 @@
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/home-venda.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style-m.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/alert.css') }}">
         <!--font icones-->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
             integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-        <script src="{{ asset ('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
         <script>
@@ -30,10 +31,10 @@
 
     <body>
         <!--- cabecalho -->
-        @include("cabecalho")
+        @include('cabecalho')
         <!--- fim cabecalho -->
 
-        @include("menu")
+        @include('menu')
 
         <script>
             $("#msg_lista_um_erro");
@@ -46,8 +47,21 @@
         <div id="mostrarSucesso"></div>
 
         <div class="conteudo">
-           @yield('conteudo')
+            @if (session('msg_sucesso'))
+                <div class="alerta alerta-sucesso" id="msgFlash">
+                    {{ session('msg_sucesso') }}
+                </div>
+            @endif
+
+            @if (session('msg_erro'))
+                <div class="alerta alerta-erro" id="msgFlash">
+                    {{ session('msg_erro') }}
+                </div>
+            @endif
+
+            @yield('conteudo')
         </div>
+
 
 
         <script src="{{ asset('assets/js/datatables/js/dataTables.responsive.min.js') }}"></script>
@@ -66,6 +80,21 @@
                 $("#tab").tabs();
             });
         </script>
+
+        <script>
+            setTimeout(() => {
+                const msg = document.getElementById('msgFlash');
+                if (msg) {
+                    msg.style.transition = 'all 0.5s ease';
+                    msg.style.opacity = '0';
+                    msg.style.height = '0';
+                    msg.style.padding = '0';
+                    msg.style.margin = '0';
+                    setTimeout(() => msg.remove(), 500);
+                }
+            }, 4000); // 4 segundos
+        </script>
+
 
     </body>
 
