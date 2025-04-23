@@ -27,11 +27,11 @@
                     <li class="subcat">
                         <a href="">Tabelas Auxiliares</a>
                         <ul>
+                            <li><a href="{{ route('status.index') }}">Status</a></li>
                             <li><a href="categoria">Categoria</a></li>
                             <li><a href="unidade">Unidade</a></li>
                             <li><a href="banco">Banco</a></li>
                             <li><a href="tipocontacorrente">Tipo Conta Corrente</a></li>
-                            <li><a href="status">Status</a></li>
                             <li><a href="formapagto">Forma Pagto</a></li>
                         </ul>
                     </li>
