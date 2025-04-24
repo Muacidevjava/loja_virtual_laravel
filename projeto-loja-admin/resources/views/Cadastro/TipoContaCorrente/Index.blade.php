@@ -16,14 +16,14 @@
         <div class="caixa">
 
             <div class="px-2 py-2 w-100 d-grid">
-                <form action="tipocontacorrente" method="POST">
-                    <input type="hidden" name="_token" value="tvtnp2mVXd8pddzy2IANE1RBBXPKhRKrJNRg7Ttx">
+                <form action="{{ route('tipocontacorrente.store') }}" method="POST">
+                    @csrf
                     <div class="caixafield  p-2 radius-4 border">
                         <div class="   p-2 pt-0 radius-4">
                             <div class="rows center-middle">
                                 <div class="col-9">
-                                    <label class="text-label d-block text-branco">Nome </label>
-                                    <input type="text" name="tipo_conta" value="" class="form-campo">
+                                    <label class="text-label d-block text-branco">Tipo Conta</label>
+                                    <input type="text" name="tipo_conta" required class="form-campo">
                                 </div>
                                 <div class="col-3 mt-0 pt-4">
                                     <input type="submit" value="Salvar" class="w-100 btn btn-roxo text-uppercase">
