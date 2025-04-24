@@ -31,7 +31,7 @@ class TipoContaCorrenteController extends Controller
      */
     public function store(TipoContaCorrenteRequest $request)
     {
-        $req = $request->except(["_token"]);
+        $req = request()->except(['_token']);
         try {
             TipoContaCorrente::Create($req);
             return redirect()->route("tipocontacorrente.index")->with("msg_sucesso", "Registro Inserido com Sucesso");
@@ -63,7 +63,8 @@ class TipoContaCorrenteController extends Controller
      */
     public function update(TipoContaCorrenteRequest $request, string $id)
     {
-        $req = $request->except(["_token", "_method"]);
+        $req = request()->except(['_token', "_method"]);
+        
         try {
             TipoContaCorrente::find($id)->update($req);
             return redirect()->route("tipocontacorrente.index")->with("msg_sucesso", "Registro Alterado com Sucesso");

@@ -31,7 +31,7 @@ class CategoriaController extends Controller
      */
     public function store(CategoriaRequest $request)
     {
-        $req = $request->except(["_token"]);
+        $req = request()->except(['_token']);
         try {
             Categoria::Create($req);
             return redirect()->route("categoria.index")->with("msg_sucesso", "Registro Inserido com Sucesso");

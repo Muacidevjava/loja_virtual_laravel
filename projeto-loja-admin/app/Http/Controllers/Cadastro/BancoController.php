@@ -31,7 +31,7 @@ class BancoController extends Controller
      */
     public function store(BancoRequest $request)
     {
-        $req = $request->except(["_token"]);
+        $req = request()->except(['_token']);
         try {
             Banco::Create($req);
             return redirect()->route("banco.index")->with("msg_sucesso", "Registro Inserido com Sucesso");

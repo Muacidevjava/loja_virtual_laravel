@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cadastro;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContaCorrenteRequest;
 use App\Models\Banco;
 use App\Models\ContaCorrente;
 use App\Models\TipoContaCorrente;
@@ -32,9 +33,15 @@ class ContaCorrenteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ContaCorrenteRequest $request)
     {
-        //
+         $req = request()->except(['_token']);
+        try {
+            ContaCorrente::Create($req);
+            return redirect()->route("contacorrente.index")->with("msg_sucesso", "Registro Inserido com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 
     /**

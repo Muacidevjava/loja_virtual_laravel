@@ -31,7 +31,7 @@ class UnidadeController extends Controller
      */
     public function store(UnidadeRequest $request)
     {
-        $req = $request->except(["_token"]);
+        $req = request()->except(['_token']);
         try {
             Unidade::Create($req);
             return redirect()->route("unidade.index")->with("msg_sucesso", "Registro Inserido com Sucesso");
