@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cadastro;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use stdClass;
@@ -36,10 +37,10 @@ class ClienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ClienteRequest $request)
     {
         $req["status_id"]                = config('constantes.status.ATIVO');
-        $req = $request->except(["_token"]);
+        $req = request()->except(["_token"]);
         try {
             $req["status_id"]                = config('constantes.status.ATIVO');
             Cliente::Create($req);
