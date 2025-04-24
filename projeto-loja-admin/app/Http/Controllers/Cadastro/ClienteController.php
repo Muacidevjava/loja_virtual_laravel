@@ -64,22 +64,40 @@ class ClienteController extends Controller
      */
     public function edit(string $id)
     {
-        
+        $dados["cliente"]   = Cliente::find($id);
+        $dados["clienteJs"] = true;
+        return View("Cadastro.Cliente.Edit", $dados);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+   
+        public function update(ClienteRequest $request, $id)
     {
-        //
+        $req = request()->except(["_token"]);
+        try {
+            $cliente = Cliente::find($id);
+            $cliente->update($req);
+            return redirect()->route("cliente.index")->with("msg_sucesso", "inserido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+
+        }
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $cliente = Cliente::find($id);
+            $cliente->delete();
+            return redirect()->route("cliente.index")->with("msg_sucesso", "excluido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 }
