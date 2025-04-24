@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CategoriaSeeder::class,
             UnidadeSeeder::class,
             BancoSeeder::class,
+            TipoContaCorrenteSeeder::class,
 
         ]);
 
