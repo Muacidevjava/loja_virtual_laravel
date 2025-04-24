@@ -29,7 +29,8 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        $dados["clienteJs"] = true;
+        return View("Cadastro.Cliente.Create", $dados);
     }
 
     /**
