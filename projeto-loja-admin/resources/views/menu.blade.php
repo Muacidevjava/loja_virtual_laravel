@@ -31,7 +31,7 @@
                             <li><a href="{{ route('categoria.index') }}">Categoria</a></li>
                             <li><a href="{{ route('unidade.index') }}">Unidade</a></li>
                             <li><a href="{{ route('banco.index') }}">Banco</a></li>
-                            <li><a href="tipocontacorrente">Tipo Conta Corrente</a></li>
+                            <li><a href="{{ route('tipocontacorrente.index') }}">Tipo Conta Corrente</a></li>
                             <li><a href="formapagto">Forma Pagto</a></li>
                         </ul>
                     </li>
