@@ -8,6 +8,7 @@ use App\Http\Controllers\Cadastro\StatusController;
 use App\Http\Controllers\Cadastro\TipoContaCorrenteController;
 use App\Http\Controllers\Cadastro\UnidadeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UtilController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -27,6 +28,9 @@ Route::resource("/tipocontacorrente", TipoContaCorrenteController::class);
 Route::resource("/contacorrente", ContaCorrenteController::class);
 
 Route::resource("/cliente", ClienteController::class);
+
+Route::get("/cliente/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNPJ"])->name("buscarCNPJ");
+
 
 
 

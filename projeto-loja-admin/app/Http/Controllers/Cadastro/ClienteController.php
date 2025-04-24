@@ -38,7 +38,16 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $req["status_id"]                = config('constantes.status.ATIVO');
+        $req = $request->except(["_token"]);
+        try {
+            $req["status_id"]                = config('constantes.status.ATIVO');
+            Cliente::Create($req);
+            return redirect()->route("cliente.index")->with("msg_sucesso", "inserido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+
+        }
     }
 
     /**
@@ -54,7 +63,7 @@ class ClienteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        
     }
 
     /**
