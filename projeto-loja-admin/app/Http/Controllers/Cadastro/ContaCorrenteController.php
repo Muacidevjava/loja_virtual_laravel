@@ -57,7 +57,11 @@ class ContaCorrenteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dados["contacorrente"] = ContaCorrente::find($id);
+        $dados["lista"] = ContaCorrente::get();
+        $dados["bancos"] = Banco::get();
+        $dados["tipos"]  = TipoContaCorrente::get();
+        return View('Cadastro.ContaCorrente.Index', $dados);
     }
 
     /**
@@ -65,7 +69,13 @@ class ContaCorrenteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $req = $request->except(["_token", "_method"]);
+        try {
+            ContaCorrente::find($id)->update($req);
+            return redirect()->route("contacorrente.index")->with("msg_sucesso", "Registro Alterado com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 
     /**
@@ -73,6 +83,15 @@ class ContaCorrenteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $contacorrente = ContaCorrente::find($id);
+			if($contacorrente){
+				$contacorrente->delete();
+			}
+            
+            return redirect()->route("contacorrente.index")->with("msg_sucesso", "Registro Excluído com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 }
