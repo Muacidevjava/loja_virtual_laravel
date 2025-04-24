@@ -16,8 +16,9 @@
         <div class="caixa">
 
             <div class="px-2 py-2 w-100 d-grid">
-                <form action="banco" method="POST">
-                    <input type="hidden" name="_token" value="tvtnp2mVXd8pddzy2IANE1RBBXPKhRKrJNRg7Ttx">
+                <form action="{{ route('banco.store') }}" method="POST">
+                    @csrf
+                   
                     <div class="caixafield  p-2 radius-4 border">
                         <div class="   p-2 pt-0 radius-4">
                             <div class="rows center-middle">

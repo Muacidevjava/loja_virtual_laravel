@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cadastro;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BancoRequest;
 use App\Models\Banco;
 use Illuminate\Http\Request;
 
@@ -28,9 +29,15 @@ class BancoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BancoRequest $request)
     {
-        
+        $req = $request->except(["_token"]);
+        try {
+            Banco::Create($req);
+            return redirect()->route("banco.index")->with("msg_sucesso", "Registro Inserido com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 
     /**
