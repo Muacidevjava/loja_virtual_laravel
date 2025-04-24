@@ -61,7 +61,7 @@ class TipoContaCorrenteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TipoContaCorrenteRequest $request, string $id)
     {
         $req = $request->except(["_token", "_method"]);
         try {
