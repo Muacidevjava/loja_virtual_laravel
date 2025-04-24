@@ -16,27 +16,34 @@
         <div class="caixa">
 
             <div class="px-2 py-2 w-100 d-grid">
-                <form action="{{ route('banco.store') }}" method="POST">
-                    @csrf
-                   
-                    <div class="caixafield  p-2 radius-4 border">
-                        <div class="   p-2 pt-0 radius-4">
-                            <div class="rows center-middle">
-                                <div class="col-3">
-                                    <label class="text-label d-block text-branco">Codigo </label>
-                                    <input type="text" name="codigo" value="" class="form-campo">
-                                </div>
-                                <div class="col-6">
-                                    <label class="text-label d-block text-branco">Nome </label>
-                                    <input type="text" name="banco" value="" class="form-campo">
-                                </div>
-                                <div class="col-3 mt-0 pt-4">
-                                    <input type="submit" value="Salvar" class="w-100 btn btn-roxo text-uppercase">
+                @if (isset($banco))
+                <form action="{{ route('banco.update', $banco->id) }}" method="POST">
+                    @method('put')
+                    @else
+                    <form action="{{ route('banco.store') }}" method="POST">
+                        @endif
+                        @csrf
+
+                        <div class="{{ isset($banco->banco) ? 'bg-edit' : 'caixafield' }}  p-2 radius-4 border">
+                            <div class="   p-2 pt-0 radius-4">
+                                <div class="rows center-middle">
+                                    <div class="col-3">
+                                        <label class="text-label d-block text-branco">Codigo </label>
+                                        <input type="text" name="codigo" value="{{ $banco->codigo ?? old('cod') }}"
+                                            class="form-campo">
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="text-label d-block text-branco">Nome </label>
+                                        <input type="text" name="banco" value="{{ $banco->banco ?? old('banco') }}"
+                                            class="form-campo">
+                                    </div>
+                                    <div class="col-3 mt-0 pt-4">
+                                        <input type="submit" value="Salvar" class="w-100 btn btn-roxo text-uppercase">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
             </div>
 
         </div>
@@ -81,7 +88,7 @@
                             </td>
                         </tr>
                         @endforeach
-                        
+
 
                     </tbody>
                 </table>

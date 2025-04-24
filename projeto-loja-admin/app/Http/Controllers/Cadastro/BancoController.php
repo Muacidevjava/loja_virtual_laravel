@@ -53,7 +53,9 @@ class BancoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dados["banco"] = Banco::find($id);
+        $dados["lista"] = Banco::get();
+        return View('Cadastro.Banco.Index', $dados);
     }
 
     /**
@@ -61,7 +63,13 @@ class BancoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $req = $request->except(["_token", "_method"]);
+        try {
+            Banco::find($id)->update($req);
+            return redirect()->route("banco.index")->with("msg_sucesso", "Registro Alterado com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 
     /**
@@ -69,6 +77,12 @@ class BancoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $banco = Banco::find($id);
+            $banco->delete();
+            return redirect()->route("banco.index")->with("msg_sucesso", "Registro Excluído com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 }
