@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Cadastro\BancoController;
 use App\Http\Controllers\Cadastro\CategoriaController;
+use App\Http\Controllers\Cadastro\ClienteController;
 use App\Http\Controllers\Cadastro\ContaCorrenteController;
 use App\Http\Controllers\Cadastro\StatusController;
 use App\Http\Controllers\Cadastro\TipoContaCorrenteController;
@@ -24,6 +25,8 @@ Route::resource("/banco", BancoController::class);
 Route::resource("/tipocontacorrente", TipoContaCorrenteController::class);
 
 Route::resource("/contacorrente", ContaCorrenteController::class);
+
+Route::resource("/cliente", ClienteController::class);
 
 
 
