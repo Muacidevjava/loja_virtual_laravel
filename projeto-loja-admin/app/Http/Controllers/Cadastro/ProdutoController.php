@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cadastro;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use App\Models\Produto;
+use App\Models\Unidade;
 use Illuminate\Http\Request;
 use stdClass;
 
@@ -16,8 +17,8 @@ class ProdutoController extends Controller
     public function index(Request $request)
     {
         $filtro                 = new stdClass;
-        $filtro->categoria_id  = request()->categoria_id ?? null;
-        $filtro->nome          = request()->nome ?? null;
+        $filtro->categoria_id  = $request->categoria_id ?? null;
+        $filtro->nome          = $request->nome ?? null;
 
         $dados["lista"] = Produto::filtro($filtro);
         $dados["categorias"] = Categoria::get();
@@ -30,7 +31,11 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+        $dados["categorias"] = Categoria::get();
+        $dados["unidades"] = Unidade::get();
+        $dados["produtoJs"] = true;
+        $dados["categoriaJs"] = true;
+        return View("Cadastro.Produto.Create", $dados);
     }
 
     /**
@@ -38,7 +43,7 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          
     }
 
     /**
