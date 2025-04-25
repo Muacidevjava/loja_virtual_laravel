@@ -39,8 +39,8 @@
                     <li class="subcat">
                         <a href="">Produto</a>
                         <ul>
-                            <li><a href="produto">Lista de produto</a></li>
-                            <li><a href="produto/create">Cadastro de produto</a></li>
+                            <li><a href="{{ route('produto.index') }}">Lista de produto</a></li>
+                            <li><a href="{{ route('produto.create') }}">Cadastro de produto</a></li>
                         </ul>
                     </li>
                     <li class="subcat">

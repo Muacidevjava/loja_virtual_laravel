@@ -5,6 +5,7 @@ use App\Http\Controllers\Cadastro\CategoriaController;
 use App\Http\Controllers\Cadastro\ClienteController;
 use App\Http\Controllers\Cadastro\ContaCorrenteController;
 use App\Http\Controllers\Cadastro\FornecedorController;
+use App\Http\Controllers\Cadastro\ProdutoController;
 use App\Http\Controllers\Cadastro\StatusController;
 use App\Http\Controllers\Cadastro\TipoContaCorrenteController;
 use App\Http\Controllers\Cadastro\TransportadoraController;
@@ -41,4 +42,6 @@ Route::resource("/vendedor", VendedorController::class);
 
 Route::resource("/transportadora", TransportadoraController::class);
 Route::get("/transportadora/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNPJ"])->name("buscarCNPJ");
+
+Route::resource("/produto", ProdutoController::class);
 
