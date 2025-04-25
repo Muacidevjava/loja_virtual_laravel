@@ -36,7 +36,7 @@
                                     placeholder="Digite aqui..">
                             </div>
                             <div class="col-3">
-                                <label class="text-label d-block text-branco">CPF </label>
+                                <label class="text-label d-block text-branco">CNPJ </label>
                                 <input type="text" name="cpf" value="{{ $filtro->cpf ?? null }}" class="form-campo"
                                     placeholder="Digite aqui..">
                             </div>
@@ -60,7 +60,7 @@
                         <tr>
                             <th align="center" width="10">item</th>
                             <th align="left">Nome</th>
-                            <th align="left">CNPJS</th>
+                            <th align="left">CNPJ</th>
                             <th align="center">Email</th>
                             <th align="center">Fone</th>
                             <th align="center">Ação</th>
