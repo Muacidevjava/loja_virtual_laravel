@@ -13,6 +13,9 @@ function buscarCNPJ(){
                 preencherDadosCliente(data.retorno);
             }
         },
+        beforeSend:function(){
+            giraGira()
+        },
         error:function(data){
 
         }
