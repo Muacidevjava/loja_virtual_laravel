@@ -16,8 +16,8 @@ class ProdutoController extends Controller
     public function index(Request $request)
     {
         $filtro                 = new stdClass;
-        $filtro->categoria_id  = request()->categoria_id ?? null;
-        $filtro->nome          = request()->nome ?? null;
+        $filtro->categoria_id  = $request->categoria_id ?? null;
+        $filtro->nome          = $request->nome ?? null;
 
         $dados["lista"] = Produto::filtro($filtro);
         $dados["categorias"] = Categoria::get();
