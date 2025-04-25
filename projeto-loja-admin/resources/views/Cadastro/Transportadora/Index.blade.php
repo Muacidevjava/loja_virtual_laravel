@@ -26,7 +26,7 @@
                             <div class="rows center-middle">
                                 <div class="col-3">
                                     <label class="text-label d-block text-branco">transportadora </label>
-                                    <input type="text" name="razao_social" value="{{ $filtro->nome ?? null }}" class="form-campo"
+                                    <input type="text" name="nome" value="{{ $filtro->nome ?? null }}" class="form-campo"
                                         placeholder="Digite aqui..">
                                 </div>
                                 <div class="col-3">
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-3">
                                     <label class="text-label d-block text-branco">CNPJ </label>
-                                    <input type="text" name="cnpj" value="{{ $filtro->cnpj ?? null }}" class="form-campo"
+                                    <input type="text" name="cpf" value="{{ $filtro->cpf ?? null }}" class="form-campo"
                                         placeholder="Digite aqui..">
                                 </div>
 
