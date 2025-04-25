@@ -73,7 +73,7 @@
                             <td align="left">{{ $l->razao_social }}</td>
                             <td align="left">{{ $l->cnpj }}</td>
                             <td align="center">{{ $l->email }}</td>
-                            <td align="center">{{ $l->telefone }}</td>
+                            <td align="center">{{ $l->celular}}</td>
                             <td align="center">
                                 <a href="{{ route('fornecedor.edit', $l->id) }}"
                                     class="btn d-inline-block btn-outline-roxo"><i class="fas fa-edit"></i>

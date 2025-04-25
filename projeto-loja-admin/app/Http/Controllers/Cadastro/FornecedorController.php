@@ -63,15 +63,25 @@ class FornecedorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+           $dados["fornecedor"] = Fornecedor::find($id);
+           $dados["fornecedorJs"] = true;
+           return View("Cadastro.Fornecedor.Create", $dados);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(FornecedorRequest $request, string $id)
     {
-        //
+        $req = request()->except(["_token"]);
+        try {
+            $fornecedor = Fornecedor::find($id);
+            $fornecedor->update($req);
+            return redirect()->route("fornecedor.index")->with("msg_sucesso", "inserido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+
+        }
     }
 
     /**
@@ -79,6 +89,12 @@ class FornecedorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $fornecedor= Fornecedor::find($id);
+            $fornecedor->delete();
+            return redirect()->route("fornecedor.index")->with("msg_sucesso", "excluido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 }

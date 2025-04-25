@@ -18,140 +18,156 @@
 
         <div id="tab">
 
-            <form action="{{ route('fornecedor.store') }}" method="POST" >
-                @csrf
-                <div class="col-12 mb-4">
-                    <fieldset>
-                        <legend>Pesquisar Por CNPJ</legend>
-                        <div class="rows center-middle">
+            @if (isset($fornecedor))
+            <form action="{{ route('fornecedor.update', $fornecedor->id) }}" method="POST">
+                @method('put')
+                @else
+                <form action="{{ route('fornecedor.store') }}" method="POST">
+                    @endif
+                    @csrf
+                    <div class="col-12 mb-4">
+                        <fieldset>
+                            <legend>Pesquisar Por CNPJ</legend>
+                            <div class="rows center-middle">
 
-                            <div class="col-6 mb-3" id="div_pesquisar">
-                                <label class="text-label">Pesquisa CNPJ</label>
-                                <div class="grupo-form-btn">
-                                    <input type="text" id="codigocnpj" class="form-campo mascara-cnpj">
+                                <div class="col-6 mb-3" id="div_pesquisar">
+                                    <label class="text-label">Pesquisa CNPJ</label>
+                                    <div class="grupo-form-btn">
+                                        <input type="text" id="codigocnpj" class="form-campo mascara-cnpj">
+                                    </div>
+                                </div>
+                                <div class="col-2 mt-4 mb-3">
+                                    <input type="button" onclick="buscarCNPJ()" value="Pesquisar CNPJ"
+                                        class="width-100 btn btn-roxo d-block m-auto">
                                 </div>
                             </div>
-                            <div class="col-2 mt-4 mb-3">
-                                <input type="button" onclick="buscarCNPJ()" value="Pesquisar CNPJ"
-                                    class="width-100 btn btn-roxo d-block m-auto">
-                            </div>
-                        </div>
-                    </fieldset>
+                        </fieldset>
 
-                </div>
-
-                <div id="tab-1">
-                    <div class="p-2">
-                        <span class="d-block mt-0 mb-4 border-bottom text-uppercase pb-1">Informações básicas</span>
-                        <div class="rows">
-                            <div class="col-6 mb-3">
-                                <label class="text-label" id="lblRazaoSocial">Razão Social<span
-                                        class="text-vermelho">*</span></label>
-                                <input type="text" name="razao_social" id="razao_social" required value=""
-                                    class="form-campo">
-                            </div>
-                            <div class="col-6 mb-3" id="divFantasia">
-                                <label class="text-label">Nome Fantasia</label>
-                                <input type="text" name="nome_fantasia" id="nome_fantasia" value="" id="nome_fantasia"
-                                    class="form-campo">
-                            </div>
-
-                            <div class="col-4 mb-3">
-                                <label class="text-label id=" lblCnpj">CNPJ<span class="text-vermelho">*</span></label>
-                                <input type="text" name="cnpj" id="cnpj" value="" class="form-campo">
-                            </div>
-
-                            <div class="col-3" id="div_tipo_contribuinte">
-                                <label class="text-label">Tipo de Contribuinte </label>
-                                <select class="form-campo" name="tipo_contribuinte" id="tipo_contribuinte">
-                                    <option value="1">1 -
-                                        Contribuinte ICMS</option>
-                                    <option value="9">9 -
-                                        Não Contribuinte</option>
-                                    <option value="2">2 -
-                                        Contribuinte Isento</option>
-                                </select>
-                            </div>
-
-
-                            <div class="col-2 mb-3">
-                                <label class="text-label" id="lblInscEstadual">Inscrição Estadual</label>
-                                <input type="text" name="rg_ie" maxlength="14" id="rg_ie" value="" class="form-campo">
-                            </div>
-                            <div class="col-4 mb-3">
-                                <label class="text-label">Celular:</label>
-                                <input type="text" name="celular" value="" class="form-campo mascara-celular">
-                            </div>
-
-                            <div class="col-8 mb-3">
-                                <label class="text-label">Email</label>
-                                <input type="text" name="email" value="" class="form-campo">
-                            </div>
-
-
-
-                        </div>
                     </div>
-                </div>
 
-                <div id="tab-2">
-                    <div class="p-2">
-                        <span class="d-block mt-4 mb-4 border-bottom text-uppercase pb-1">Endereço</span>
-                        <div class="rows">
-                            <div class="col-2 mb-3">
-                                <label class="text-label">CEP</label>
-                                <div class="input-grupo">
-                                    <input type="text" value="" name="cep" id="cep"
-                                        class="form-campo busca_cep mascara-cep">
-
+                    <div id="tab-1">
+                        <div class="p-2">
+                            <span class="d-block mt-0 mb-4 border-bottom text-uppercase pb-1">Informações básicas</span>
+                            <div class="rows">
+                                <div class="col-6 mb-3">
+                                    <label class="text-label" id="lblRazaoSocial">Razão Social<span
+                                            class="text-vermelho">*</span></label>
+                                    <input type="text" name="razao_social" id="razao_social" required
+                                        value="{{ $fornecedor->razao_social ?? old('razao_social') }}"
+                                        class="form-campo">
                                 </div>
-                            </div>
-                            <div class="col-6 mb-3">
-                                <label class="text-label">Logradouro</label>
-                                <input type="text" name="logradouro" id="logradouro"
-                                    value="{{ old('logradouro') }}" class="form-campo rua">
-                            </div>
-                            <div class="col-2 mb-4">
-                                <label class="text-label">Numero</label>
-                                <input type="text" name="numero" id="numero" value="{{ old('numero') }}"
-                                    class="form-campo ">
-                            </div>
-                            <div class="col-2 mb-2">
-                                <label class="text-label">UF</label>
-                                <input type="text" name="uf" id="uf" value="{{ old('uf') }}"
-                                    class="form-campo estado">
-                            </div>
-                            <div class="col-3 mb-3">
-                                <label class="text-label">Complemento</label>
-                                <input type="text" name="complemento" id="complemento"
-                                    value="{{ old('complemento') }}" class="form-campo">
-                            </div>
-                            <div class="col-3 mb-3">
-                                <label class="text-label">Bairro</label>
-                                <input type="text" name="bairro" id="bairro" value="{{ old('bairro') }}"
-                                    class="form-campo bairro ">
-                            </div>
+                                <div class="col-6 mb-3" id="divFantasia">
+                                    <label class="text-label">Nome Fantasia</label>
+                                    <input type="text" name="nome_fantasia" id="nome_fantasia"
+                                        value=" {{ $fornecedor->nome_fantasia ?? old('nome_fantasia') }}"
+                                        id="nome_fantasia" class="form-campo">
+                                </div>
 
-                            <div class="col-4 mb-2">
-                                <label class="text-label">Cidade</label>
-                                <input type="text" name="cidade" id="cidade" value="{{ old('cidade') }}"
-                                    class="form-campo cidade">
-                            </div>
-                            <div class="col-2 mb-2">
-                                <label class="text-label">IBGE</label>
-                                <input type="text" name="ibge" id="ibge" value="{{ old('ibge') }}"
-                                    class="form-campo ibge">
+                                <div class="col-4 mb-3">
+                                    <label class="text-label id=" lblCnpj">CNPJ<span
+                                            class="text-vermelho">*</span></label>
+                                    <input type="text" name="cnpj" id="cnpj"
+                                        value="{{ $fornecedor->cnpj ?? old('cnpj') }}" class="form-campo">
+                                </div>
+
+                                <div class="col-3" id="div_tipo_contribuinte">
+                                    <label class="text-label">Tipo de Contribuinte </label>
+                                    <select class="form-campo" name="tipo_contribuinte" id="tipo_contribuinte">
+                                        <option value="1" {{ ($fornecedor->tipo_cotribuinte ?? null) == 1 ? 'selected' :
+                                            '' }}>1 -
+                                            Contribuinte ICMS</option>
+                                        <option value="9" {{ ($fornecedor->tipo_contribuinte ?? null) == 9 ? 'selected':
+                                            '' }}>9 -
+                                            Não Contribuinte</option>
+                                        <option value="2" {{ ($fornecedor->tipo_contribuinte ?? null) == 2 ? 'selected':
+                                            '' }}>2 -
+                                            Contribuinte Isento</option>
+                                    </select>
+                                </div>
+
+
+                                <div class="col-2 mb-3">
+                                    <label class="text-label" id="lblInscEstadual">Inscrição Estadual</label>
+                                    <input type="text" name="rg_ie" maxlength="14" id="rg_ie"
+                                        value=" {{ $fornecedor->rg_ie ?? old('rg_ie') }}" class="form-campo">
+                                </div>
+                                <div class="col-4 mb-3">
+                                    <label class="text-label">Celular:</label>
+                                    <input type="text" name="celular"
+                                        value=" {{ $fornecedor->celular ?? old('celular') }}"
+                                        class="form-campo mascara-celular">
+                                </div>
+
+                                <div class="col-8 mb-3">
+                                    <label class="text-label">Email</label>
+                                    <input type="text" name="email" value="{{ $fornecedor->email ?? old('email') }} "
+                                        class="form-campo">
+                                </div>
+
+
+
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <div id="tab-2">
+                        <div class="p-2">
+                            <span class="d-block mt-4 mb-4 border-bottom text-uppercase pb-1">Endereço</span>
+                            <div class="rows">
+                                <div class="col-2 mb-3">
+                                    <label class="text-label">CEP</label>
+                                    <div class="input-grupo">
+                                        <input type="text" value="{{ $fornecedor->cep ?? old('cep') }} " name="cep" id="cep"
+                                            class="form-campo busca_cep mascara-cep">
+
+                                    </div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="text-label">Logradouro</label>
+                                    <input type="text" name="logradouro" id="logradouro" value="{{ old('logradouro') }}"
+                                        class="form-campo rua">
+                                </div>
+                                <div class="col-2 mb-4">
+                                    <label class="text-label">Numero</label>
+                                    <input type="text" name="numero" id="numero" value="{{ old('numero') }}"
+                                        class="form-campo " required>
+                                </div>
+                                <div class="col-2 mb-2">
+                                    <label class="text-label">UF</label>
+                                    <input type="text" name="uf" id="uf" value="{{ old('uf') }}"
+                                        class="form-campo estado">
+                                </div>
+                                <div class="col-3 mb-3">
+                                    <label class="text-label">Complemento</label>
+                                    <input type="text" name="complemento" id="complemento"
+                                        value="{{ old('complemento') }}" class="form-campo">
+                                </div>
+                                <div class="col-3 mb-3">
+                                    <label class="text-label">Bairro</label>
+                                    <input type="text" name="bairro" id="bairro" value="{{ old('bairro') }}"
+                                        class="form-campo bairro ">
+                                </div>
+
+                                <div class="col-4 mb-2">
+                                    <label class="text-label">Cidade</label>
+                                    <input type="text" name="cidade" id="cidade" value="{{ old('cidade') }}"
+                                        class="form-campo cidade">
+                                </div>
+                                <div class="col-2 mb-2">
+                                    <label class="text-label">IBGE</label>
+                                    <input type="text" name="ibge" id="ibge" value="{{ old('ibge') }}"
+                                        class="form-campo ibge">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
-                <div class="col-12 text-center pb-4">
-                    <input type="submit" value="Salvar" class="btn btn-padrao m-auto">
-                </div>
-            </form>
+                    <div class="col-12 text-center pb-4">
+                        <input type="submit" value="Salvar" class="btn btn-padrao m-auto">
+                    </div>
+                </form>
         </div>
     </div>
 
