@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cadastro;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FornecedorRequest;
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 use stdClass;
@@ -36,9 +37,17 @@ class FornecedorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FornecedorRequest  $request)
     {
-        //
+        $req = request()->except(["_token"]);
+        try {
+            $req["status_id"]                = config('constantes.status.ATIVO');
+            Fornecedor::Create($req);
+            return redirect()->route("fornecedor.index")->with("msg_sucesso", "inserido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+
+        }
     }
 
     /**

@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-4 mb-3">
                                 <label class="text-label">Celular:</label>
-                                <input type="text" name="celular" value="" class="form-campo">
+                                <input type="text" name="celular" value="" class="form-campo mascara-celular">
                             </div>
 
                             <div class="col-8 mb-3">
