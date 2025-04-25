@@ -15,4 +15,29 @@ public function status(){
     return $this->belongsTo(Status::class);
 }
 
+public static function filtro($filtro, $paginas=0){
+    $retorno = self::query();
+
+    if($filtro->nome){
+        $retorno->where("nome", "like", '%'.$filtro->nome.'%');
+    }
+
+    if($filtro->cpf){
+        $retorno->where("cpf", "like", '%'.$filtro->cpf.'%');
+    }
+
+    if($filtro->email){
+        $retorno->where("email", "like", '%'.$filtro->email.'%');
+    }
+
+    if($paginas>0){
+        $retorno = $retorno->paginate($paginas);
+    }else{
+        $retorno = $retorno->get();
+    }
+
+    return $retorno;
+
+}
+
 }

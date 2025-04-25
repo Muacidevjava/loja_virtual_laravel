@@ -8,6 +8,7 @@ use App\Http\Controllers\Cadastro\FornecedorController;
 use App\Http\Controllers\Cadastro\StatusController;
 use App\Http\Controllers\Cadastro\TipoContaCorrenteController;
 use App\Http\Controllers\Cadastro\UnidadeController;
+use App\Http\Controllers\Cadastro\VendedorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UtilController;
 use Illuminate\Support\Facades\Route;
@@ -35,5 +36,7 @@ Route::get("/cliente/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNP
 Route::get("/fornecedor/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNPJ"])->name("buscarCNPJ");
 
 Route::resource("/fornecedor", FornecedorController::class);
+
+Route::resource("/vendedor", VendedorController::class);
 
 
