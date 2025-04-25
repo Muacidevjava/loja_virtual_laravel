@@ -64,7 +64,9 @@ class VendedorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dados["vendedor"]   = Vendedor::find($id);
+        $dados["vendedorJs"] = true;
+        return View("Cadastro.Vendedor.Create", $dados);
     }
 
     /**
@@ -72,7 +74,15 @@ class VendedorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $req = $request->except(["_token"]);
+        try {
+            $vendedor = Vendedor::find($id);
+            $vendedor->update($req);
+            return redirect()->route("vendedor.index")->with("msg_sucesso", "inserido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+
+        }
     }
 
     /**
