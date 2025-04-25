@@ -5,15 +5,22 @@ namespace App\Http\Controllers\Cadastro;
 use App\Http\Controllers\Controller;
 use App\Models\Fornecedor;
 use Illuminate\Http\Request;
+use stdClass;
 
 class FornecedorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dados["lista"] = Fornecedor::get();
+        $filtro                = new stdClass;
+        $filtro->nome          = $request->nome ?? null;
+        $filtro->cpf           = $request->cpf ?? null;
+        $filtro->email         = $request->email ?? null;
+
+        $dados["lista"]         = Fornecedor::filtro($filtro);
+        $dados["filtro"]        = $filtro;
         return View("Cadastro.Fornecedor.Index", $dados);
     }
 

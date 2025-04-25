@@ -26,16 +26,19 @@
                     <div class="mostraFiltro bg-padrao mt-2 p-2 radius-4 border">
                         <div class="rows center-middle">
                             <div class="col-3">
-                                <label class="text-label d-block text-branco">Fornecedor </label>
-                                <input type="text" name="nome" value="" class="form-campo" placeholder="Digite aqui..">
+                                <label class="text-label d-block text-branco">Cliente </label>
+                                <input type="text" name="nome" value="{{ $filtro->nome ?? null }}" class="form-campo"
+                                    placeholder="Digite aqui..">
                             </div>
                             <div class="col-3">
                                 <label class="text-label d-block text-branco">Email </label>
-                                <input type="text" name="email" value="" class="form-campo" placeholder="Digite aqui..">
+                                <input type="text" name="email" value="{{ $filtro->email ?? null }}" class="form-campo"
+                                    placeholder="Digite aqui..">
                             </div>
                             <div class="col-3">
                                 <label class="text-label d-block text-branco">CPF </label>
-                                <input type="text" name="cpf" value="" class="form-campo" placeholder="Digite aqui..">
+                                <input type="text" name="cpf" value="{{ $filtro->cpf ?? null }}" class="form-campo"
+                                    placeholder="Digite aqui..">
                             </div>
 
                             <div class="col-2 mt-0 pt-4">
