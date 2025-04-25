@@ -91,6 +91,12 @@ public function index(Request $request)
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $transportadora = Transportadora::find($id);
+            $transportadora->delete();
+            return redirect()->route("transportadora.index")->with("msg_sucesso", "excluido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 }
