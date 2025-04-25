@@ -7,6 +7,7 @@ use App\Http\Controllers\Cadastro\ContaCorrenteController;
 use App\Http\Controllers\Cadastro\FornecedorController;
 use App\Http\Controllers\Cadastro\StatusController;
 use App\Http\Controllers\Cadastro\TipoContaCorrenteController;
+use App\Http\Controllers\Cadastro\TransportadoraController;
 use App\Http\Controllers\Cadastro\UnidadeController;
 use App\Http\Controllers\Cadastro\VendedorController;
 use App\Http\Controllers\HomeController;
@@ -38,5 +39,7 @@ Route::get("/fornecedor/util/buscarcnpj/{cnpj}", [UtilController::class, "buscar
 Route::resource("/fornecedor", FornecedorController::class);
 
 Route::resource("/vendedor", VendedorController::class);
+
+Route::resource("/transportadora", TransportadoraController::class);
 
 

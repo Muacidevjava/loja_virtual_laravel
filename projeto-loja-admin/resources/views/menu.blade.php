@@ -60,8 +60,8 @@
                     <li class="subcat">
                         <a href="">Transportadora</a>
                         <ul>
-                            <li><a href="transportadora">Lista de Tranpostadora</a></li>
-                            <li><a href="transportadora/create">Cadastro de Transportadora</a></li>
+                            <li><a href="{{ route('transportadora.index') }}">Lista de Transportadora</a></li>
+                            <li><a href="{{ route('transportadora.create') }}">Cadastro de Transportadora</a></li>
                         </ul>
                     </li>
                     <li class="subcat">
