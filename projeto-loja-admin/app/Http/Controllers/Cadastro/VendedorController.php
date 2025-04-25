@@ -90,6 +90,12 @@ class VendedorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $vendedor = Vendedor::find($id);
+            $vendedor->delete();
+            return redirect()->route("vendedor.index")->with("msg_sucesso", "excluido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 }
