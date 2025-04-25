@@ -60,6 +60,9 @@
         @endif
 
         @yield('conteudo')
+        <div class="window load fechar_giragira" id="giragira">
+            <span class="text-load">Carregando...</span>
+        </div>
     </div>
 
 
@@ -76,6 +79,9 @@
     <script src="{{ asset('assets/componentes/js/upload.js') }}"></script>
     @if (isset($clienteJs))
     <script type="text/javascript" src="{{ asset('assets/js/js_cliente.js') }}"></script>
+    @endif
+    @if (isset($fornecedorJs))
+    <script type="text/javascript" src="{{ asset('assets/js/js_fornecedor.js') }}"></script>
     @endif
 
     <script>

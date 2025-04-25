@@ -29,7 +29,8 @@ class FornecedorController extends Controller
      */
     public function create()
     {
-        //
+        $dados["fornecedorJs"] = true;
+        return View("Cadastro.Fornecedor.Create", $dados);
     }
 
     /**
