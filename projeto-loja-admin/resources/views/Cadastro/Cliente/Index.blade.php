@@ -18,7 +18,7 @@
 
             <div class="px-2 py-2 w-100 d-grid">
                 <div class="d-flex text-end">
-                    <a href="" class="btn btn-roxo mx-1" title="Adicionar novo"><i class="fas fa-plus-circle"></i> </a>
+                    <a href="cliente/create" class="btn btn-roxo mx-1" title="Adicionar novo"><i class="fas fa-plus-circle"></i> </a>
                     <a href="" class="btn btn-laranja filtro mx-1" title="Filtrar"><i class="fas fa-filter"></i></a>
                 </div>
                 <form>
