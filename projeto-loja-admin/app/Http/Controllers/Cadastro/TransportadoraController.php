@@ -65,15 +65,25 @@ public function index(Request $request)
      */
     public function edit(string $id)
     {
-        
+        $dados["transportadora"]   = Transportadora::find($id);
+        $dados["transportadoraJs"] = true;
+        return View("Cadastro.Transportadora.Create", $dados);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TransportadoraRequest $request, $id)
     {
-        //
+        $req = request()->except(["_token"]);
+        try {
+            $tranportadora = Transportadora::find($id);
+            $tranportadora->update($req);
+            return redirect()->route("transportadora.index")->with("msg_sucesso", "inserido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+
+        }
     }
 
     /**
