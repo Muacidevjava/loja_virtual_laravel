@@ -46,8 +46,8 @@
                     <li class="subcat">
                         <a href="">Cliente</a>
                         <ul>
-                            <li><a href="cliente">Lista de Cliente</a></li>
-                            <li><a href="cliente/create">Cadastro de Cliente</a></li>
+                            <li><a href="{{ route('cliente.index') }}">Lista de Cliente</a></li>
+                            <li><a href="{{ route('cliente.create') }}">Cadastro de Cliente</a></li>
                         </ul>
                     </li>
                     <li class="subcat">
