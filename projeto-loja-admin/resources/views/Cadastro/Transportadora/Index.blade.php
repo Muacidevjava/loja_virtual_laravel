@@ -25,7 +25,7 @@
                         <div class="mostraFiltro bg-padrao mt-2 p-2 radius-4 border">
                             <div class="rows center-middle">
                                 <div class="col-3">
-                                    <label class="text-label d-block text-branco">transportadora </label>
+                                    <label class="text-label d-block text-branco">Transportadora </label>
                                     <input type="text" name="nome" value="{{ $filtro->nome ?? null }}" class="form-campo"
                                         placeholder="Digite aqui..">
                                 </div>
