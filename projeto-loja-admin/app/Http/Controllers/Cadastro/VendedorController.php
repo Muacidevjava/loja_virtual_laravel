@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cadastro;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VendedorRequest;
 use App\Models\Vendedor;
 use Illuminate\Http\Request;
 use stdClass;
@@ -29,15 +30,25 @@ class VendedorController extends Controller
      */
     public function create()
     {
-        //
+        $dados["vendedorJs"] = true;
+        return View("Cadastro.Vendedor.Create", $dados);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VendedorRequest $request)
     {
-        //
+        $req["status_id"]   = config('constantes.status.ATIVO');
+        $req = request()->except(["_token"]);
+        try {
+            $req["status_id"]                = config('constantes.status.ATIVO');
+            Vendedor::Create($req);
+            return redirect()->route("vendedor.index")->with("msg_sucesso", "inserido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+
+        }
     }
 
     /**
