@@ -4,6 +4,7 @@ use App\Http\Controllers\Cadastro\BancoController;
 use App\Http\Controllers\Cadastro\CategoriaController;
 use App\Http\Controllers\Cadastro\ClienteController;
 use App\Http\Controllers\Cadastro\ContaCorrenteController;
+use App\Http\Controllers\Cadastro\FornecedorController;
 use App\Http\Controllers\Cadastro\StatusController;
 use App\Http\Controllers\Cadastro\TipoContaCorrenteController;
 use App\Http\Controllers\Cadastro\UnidadeController;
@@ -31,6 +32,6 @@ Route::resource("/cliente", ClienteController::class);
 
 Route::get("/cliente/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNPJ"])->name("buscarCNPJ");
 
-
+Route::resource("/fornecedor", FornecedorController::class);
 
 

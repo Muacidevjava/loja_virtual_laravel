@@ -53,8 +53,8 @@
                     <li class="subcat">
                         <a href="">Fornecedor</a>
                         <ul>
-                            <li><a href="fornecedor">Lista de Fornecedor</a></li>
-                            <li><a href="fornecedor/create">Cadastro de Fornecedor</a></li>
+                            <li><a href="{{ route('fornecedor.index') }}">Lista de Fornecedor</a></li>
+                            <li><a href="{{ route('fornecedor.create') }}">Cadastro de Fornecedor</a></li>
                         </ul>
                     </li>
                     <li class="subcat">

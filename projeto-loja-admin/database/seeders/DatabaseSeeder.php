@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             TipoContaCorrenteSeeder::class,
             ContaCorrenteSeeder::class,
             ClienteSeeder::class,
+            FornecedorSeeder::class,
             
 
         ]);
