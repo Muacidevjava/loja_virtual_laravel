@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cadastro;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TransportadoraRequest;
 use App\Models\Transportadora;
 use Illuminate\Http\Request;
 use stdClass;
@@ -30,15 +31,25 @@ public function index(Request $request)
      */
     public function create()
     {
-        //
+        $dados["transportadoraJs"] = true;
+        return View("Cadastro.Transportadora.Create", $dados);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TransportadoraRequest $request)
     {
-        //
+        $req["status_id"]                = config('constantes.status.ATIVO');
+        $req = request()->except(["_token"]);
+        try {
+            $req["status_id"]                = config('constantes.status.ATIVO');
+            Transportadora::Create($req);
+            return redirect()->route("transportadora.index")->with("msg_sucesso", "inserido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+
+        }
     }
 
     /**
@@ -54,7 +65,7 @@ public function index(Request $request)
      */
     public function edit(string $id)
     {
-        //
+        
     }
 
     /**

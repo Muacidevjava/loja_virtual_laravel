@@ -31,15 +31,14 @@ Route::resource("/tipocontacorrente", TipoContaCorrenteController::class);
 Route::resource("/contacorrente", ContaCorrenteController::class);
 
 Route::resource("/cliente", ClienteController::class);
-
 Route::get("/cliente/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNPJ"])->name("buscarCNPJ");
 
-Route::get("/fornecedor/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNPJ"])->name("buscarCNPJ");
-
 Route::resource("/fornecedor", FornecedorController::class);
+Route::get("/fornecedor/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNPJ"])->name("buscarCNPJ");
 
 Route::resource("/vendedor", VendedorController::class);
 
-Route::resource("/transportadora", TransportadoraController::class);
 
+Route::resource("/transportadora", TransportadoraController::class);
+Route::get("/transportadora/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNPJ"])->name("buscarCNPJ");
 

@@ -83,6 +83,9 @@
     @if (isset($fornecedorJs))
     <script type="text/javascript" src="{{ asset('assets/js/js_fornecedor.js') }}"></script>
     @endif
+    @if (isset($transportadoraJs))
+        <script type="text/javascript" src="{{ asset('assets/js/js_transportadora.js') }}"></script>
+    @endif
 
     <script>
         $(function() {
