@@ -82,13 +82,14 @@
                         <a href="">Imagens</a>
                         <ul>
                             <li><a href="{{ route('imagem.index') }}">Lista de Imagens</a></li>
+                            <li><a href="{{ route('imagemproduto.index') }}">Lista de Imagem Produto</a></li>
                         </ul>
                     </li>
 
                     <li class="subcat">
                         <a href="">Grade Produto</a>
                         <ul>
-                            <li><a href="variacaograde">Lista de Variação</a></li>
+                            <li><a href="{{ route('variacaograde.index') }}">Lista de Variação</a></li>
                             <li><a href="itemvariacaograde">Item da Variação</a></li>
                         </ul>
                     </li>

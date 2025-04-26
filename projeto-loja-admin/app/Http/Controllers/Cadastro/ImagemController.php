@@ -23,7 +23,7 @@ class ImagemController extends Controller
         $dados["categorias"]    = Categoria::get();
         $dados["produtoJs"]     = true;
         $dados["categoriaJs"]   = true;
-        return view("Cadastro.ImagemProduto.Index", $dados);
+        return view("Cadastro.Imagem.Index", $dados);
     }
 
     /**

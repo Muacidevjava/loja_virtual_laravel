@@ -6,12 +6,14 @@ use App\Http\Controllers\Cadastro\ClienteController;
 use App\Http\Controllers\Cadastro\ContaCorrenteController;
 use App\Http\Controllers\Cadastro\FornecedorController;
 use App\Http\Controllers\Cadastro\ImagemController;
+use App\Http\Controllers\Cadastro\ImagemProdutoController;
 use App\Http\Controllers\Cadastro\ProdutoController;
 use App\Http\Controllers\Cadastro\StatusController;
 use App\Http\Controllers\Cadastro\TipoContaCorrenteController;
 use App\Http\Controllers\Cadastro\TransportadoraController;
 use App\Http\Controllers\Cadastro\UnidadeController;
 use App\Http\Controllers\Cadastro\VendedorController;
+use App\Http\Controllers\Grade\VariacaoGradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UtilController;
 use Illuminate\Support\Facades\Route;
@@ -49,4 +51,9 @@ Route::get("/transportadora/util/buscarcnpj/{cnpj}", [UtilController::class, "bu
 Route::resource("/produto", ProdutoController::class);
 
 Route::resource('/imagem',ImagemController::class);
+
+Route::resource('/variacaograde', VariacaoGradeController::class);
+
+Route::resource('/imagemproduto', ImagemProdutoController::class);
+
 
