@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Produto;
+use App\Models\TipoVenda;
 use App\Models\Unidade;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -29,6 +30,10 @@ class DatabaseSeeder extends Seeder
             TransportadoraSeeder::class,
             ProdutoSeeder::class,
             TipoMovimentoSeeder::class,
+            TipoVendaSeeder::class,
+            
+
+
             
 
         ]);
