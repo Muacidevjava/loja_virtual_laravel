@@ -9,6 +9,8 @@ use App\Models\Imagem;
 use App\Models\ImagemProduto;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage as FacadesStorage;
+use Storage;
 
 class ImagemController extends Controller
 {
@@ -86,6 +88,20 @@ class ImagemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $imagem = Imagem::find($id);
+            if($imagem){
+               if($imagem->delete()){
+                 if(Storage::disk('public')->exists( $imagem->imagem )){
+                    Storage::disk('public')->delete($imagem->imagem);
+                 }
+                 return redirect()->route("imagem.index")->with("msg_sucesso", "Registro Excluido com Sucesso");
+               }
+            }else{
+                return redirect()->route("imagem.index")->with("msg_erro", "Registro não encontrado");
+            }
+        }catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 }
