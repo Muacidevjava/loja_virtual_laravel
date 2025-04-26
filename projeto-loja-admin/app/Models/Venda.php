@@ -20,12 +20,19 @@ class Venda extends Model
     public function status(){
         return $this->belongsTo(Status::class, 'status_id');
     }
-
+    public function status_financeiro(){
+        return $this->belongsTo(Status::class, 'tipo_venda_id');
+    }
+   
     public function cliente(){
         return $this->belongsTo(Cliente::class, 'cliente_id');
     }
 
     public function vendedor(){
         return $this->belongsTo(Vendedor::class, 'vendedor_id');
+    }
+
+    public function tipo_venda(){
+        return $this->belongsTo(TipoVenda::class, 'tipo_venda_id');
     }
 }

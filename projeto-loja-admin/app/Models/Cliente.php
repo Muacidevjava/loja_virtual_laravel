@@ -17,6 +17,10 @@ class Cliente extends Model
         return $this->belongsTo(Status::class);
     }
 
+    public function vendas(){
+        return $this->hasMany(Venda::class);
+    }
+
     public static function filtro($filtro, $paginas=0){
         $retorno = self::query();
 
