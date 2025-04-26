@@ -90,7 +90,11 @@
     <script type="text/javascript" src="{{ asset('assets/js/js_produto.js') }}"></script>
     @endif
     @if (isset($categoriaJs))
-        <script src="{{ asset('assets/js/js_categoria.js') }}"></script>
+    <script src="{{ asset('assets/js/js_categoria.js') }}"></script>
+    @endif
+
+    @if (isset($entradaJs))
+    <script type="text/javascript" src="{{ asset('assets/js/js_entrada.js') }}"></script>
     @endif
 
     <script>

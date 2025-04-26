@@ -115,6 +115,13 @@ class ProdutoController extends Controller
 
     }
 
+    public function pesquisa(){
+        $q = $_GET["q"];
+        $produtos = Produto::where("nome", "like","%$q%")->get();
+
+        return response()->json($produtos);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
