@@ -130,7 +130,7 @@
                     <li class="subcat">
                         <a href="">Saídas</a>
                         <ul>
-                            <li><a href="saida">Saídas Avulsas</a></li>
+                            <li><a href="{{ route('saida.index') }}">Saídas Avulsas</a></li>
                         </ul>
                     </li>
                     <li class="subcat">

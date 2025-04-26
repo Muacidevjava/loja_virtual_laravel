@@ -14,6 +14,7 @@ use App\Http\Controllers\Cadastro\TransportadoraController;
 use App\Http\Controllers\Cadastro\UnidadeController;
 use App\Http\Controllers\Cadastro\VendedorController;
 use App\Http\Controllers\Estoque\EntradaController;
+use App\Http\Controllers\Estoque\SaidaController;
 use App\Http\Controllers\Grade\ItemVariacaoGradeController;
 use App\Http\Controllers\Grade\VariacaoGradeController;
 use App\Http\Controllers\HomeController;
@@ -54,7 +55,6 @@ Route::get("/transportadora/util/buscarcnpj/{cnpj}", [UtilController::class, "bu
 Route::get("/produto/pesquisa",[ProdutoController::class,"pesquisa"])->name('produto.pesquisa');
 Route::resource("/produto", ProdutoController::class);
 
-
 Route::resource('/imagem',ImagemController::class);
 
 Route::resource('/variacaograde', VariacaoGradeController::class);
@@ -66,6 +66,8 @@ Route::resource("/itemvariacaograde", ItemVariacaoGradeController::class);
 Route::get("/entrada", [EntradaController::class,"index"])->name("entrada.index");
 
 Route::post("/entrada/salvarJs", [EntradaController::class,"salvarJs"])->name("entrada.salvarJs");
+
+Route::get("/saida", [SaidaController::class,"index"])->name("saida.index");
 
 
 
