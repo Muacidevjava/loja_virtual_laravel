@@ -67,7 +67,7 @@
                             <label class="text-label">Produto</label>
                             <div class="grupo-form-btn">
                                 <input type="text" name="produtoentrada" id="produtoentrada" class="form-campo">
-                                <a href="#" class="border radius-50 p-1 fas fa-plus" title="Inserir novo Produto"></a>
+                                <a href="{{ route('produto.create') }}" class="border radius-50 p-1 fas fa-plus" title="Inserir novo Produto"></a>
                             </div>
 
                         </div>

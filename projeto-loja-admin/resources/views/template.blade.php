@@ -96,6 +96,9 @@
     @if (isset($entradaJs))
     <script type="text/javascript" src="{{ asset('assets/js/js_entrada.js') }}"></script>
     @endif
+    @if (isset($saidaJs))
+    <script type="text/javascript" src="{{ asset('assets/js/js_saida.js') }}"></script>
+    @endif
 
     <script>
         $(function() {

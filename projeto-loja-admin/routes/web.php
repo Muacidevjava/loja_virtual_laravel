@@ -67,6 +67,7 @@ Route::get("/entrada", [EntradaController::class,"index"])->name("entrada.index"
 
 Route::post("/entrada/salvarJs", [EntradaController::class,"salvarJs"])->name("entrada.salvarJs");
 
+Route::post("/saida/salvarJs", [SaidaController::class,"salvarJs"])->name("saida.salvarJs");
 Route::get("/saida", [SaidaController::class,"index"])->name("saida.index");
 
 
