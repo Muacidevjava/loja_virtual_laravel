@@ -82,8 +82,8 @@
 
 <div class="modal_livre medio image" id="uploads" style="z-index:10">
     <a href="javascript:;" class="fechar_livre" onclick="fecharModalLivre()">x</a>
-    <form action="" method="POST" enctype="multipart/form-data">
-
+    <form action="{{ route('imagem.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="caixa mb-2 mt-0">
             <div class="col-12 mt-3">
                 <fieldset class="tranparent border-0">
@@ -111,7 +111,11 @@
                                         <label class="text-label">Categoria</label>
                                         <div class="group-btn d-flex center-midlle">
                                             <select class="form-campo" name="categoria_id" id="cb_categoria_id">
-                                                <option value="1"> Panela </option>
+                                                @foreach ($categorias as $cat)
+                                                    <option value="{{ $cat->id }}">
+                                                        {{ $cat->categoria }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                             <a href="javascript:;" onclick="abrirModal('#modalCategoria')"
                                                 class="text-verde p-1 border radius-50 ml-1 fas fa-plus"

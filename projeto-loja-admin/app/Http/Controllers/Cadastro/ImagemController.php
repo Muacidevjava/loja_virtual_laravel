@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Cadastro;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use App\Models\Imagem;
+use App\Models\ImagemProduto;
+use Exception;
 use Illuminate\Http\Request;
 
 class ImagemController extends Controller
@@ -34,7 +36,24 @@ class ImagemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $img = new \stdClass();
+            $img->categoria_id = $request->categoria_id;
+            $img->titulo = $request->titulo;
+
+            if ($request->hasFile('imagem') && $request->imagem->isValid()) {
+                $file = $request->file("imagem");
+                $img->imagem = $file->store("upload/imagens");
+            }else{
+                throw new Exception("Selecione um imagem primeiramente");
+            }
+            Imagem::create(objToArray($img));
+
+            return redirect()->route("imagem.index")->with("msg_sucesso", "Registro Inserido com Sucesso");
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['msg_erro' => 'Erro ao inserir imagem: ' . $e->getMessage()]);
+        }
+
     }
 
     /**
