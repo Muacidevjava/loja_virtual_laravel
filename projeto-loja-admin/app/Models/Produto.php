@@ -23,6 +23,11 @@ class Produto extends Model
         return $this->belongsTo(Categoria::class);
     }
 
+    public function imagens()
+        {
+            return $this->belongsToMany(Imagem::class, 'imagem_produtos', 'produto_id', 'imagem_id')->withPivot('id');
+        }
+
     public static function filtro($filtro, $paginas=0){
         $retorno = self::query();
 
