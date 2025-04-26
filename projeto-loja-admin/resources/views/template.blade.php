@@ -84,7 +84,10 @@
     <script type="text/javascript" src="{{ asset('assets/js/js_fornecedor.js') }}"></script>
     @endif
     @if (isset($transportadoraJs))
-        <script type="text/javascript" src="{{ asset('assets/js/js_transportadora.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/js_transportadora.js') }}"></script>
+    @endif
+    @if (isset($produtoJs))
+    <script type="text/javascript" src="{{ asset('assets/js/js_produto.js') }}"></script>
     @endif
 
     <script>
