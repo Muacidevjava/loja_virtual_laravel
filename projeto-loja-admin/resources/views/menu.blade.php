@@ -124,7 +124,7 @@
                     <li class="subcat">
                         <a href="">Entradas</a>
                         <ul>
-                            <li><a href="entrada">Entradas avulsa</a></li>
+                            <li><a href="{{ route('entrada.index') }}">Entradas avulsa</a></li>
                         </ul>
                     </li>
                     <li class="subcat">

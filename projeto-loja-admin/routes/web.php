@@ -13,6 +13,7 @@ use App\Http\Controllers\Cadastro\TipoContaCorrenteController;
 use App\Http\Controllers\Cadastro\TransportadoraController;
 use App\Http\Controllers\Cadastro\UnidadeController;
 use App\Http\Controllers\Cadastro\VendedorController;
+use App\Http\Controllers\Estoque\EntradaController;
 use App\Http\Controllers\Grade\ItemVariacaoGradeController;
 use App\Http\Controllers\Grade\VariacaoGradeController;
 use App\Http\Controllers\HomeController;
@@ -58,6 +59,8 @@ Route::resource('/variacaograde', VariacaoGradeController::class);
 Route::resource('/imagemproduto', ImagemProdutoController::class);
 
 Route::resource("/itemvariacaograde", ItemVariacaoGradeController::class);
+
+Route::get("/entrada", [EntradaController::class,"index"])->name("entrada.index");
 
 
 
