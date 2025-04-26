@@ -59,7 +59,7 @@ class ProdutoController extends Controller
                 $req["imagem"] = $file->store("upload/produtos");
             }
             Produto::Create($req);
-            return redirect()->route("produto.index")->with("msg_sucesso", "inserido com sucesso");
+            return redirect()->route("produto.index")->with("msg_sucesso", "Registro Inserido com Sucesso");
         } catch (\Throwable $th) {
             return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
 
@@ -128,7 +128,7 @@ class ProdutoController extends Controller
                 }
             }
             $produto->delete();
-            return redirect()->route("produto.index")->with("msg_sucesso", "excluido com sucesso");
+            return redirect()->route("produto.index")->with("msg_sucesso", "Registro Excluído com Sucesso");
         } catch (\Throwable $th) {
             return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
         }

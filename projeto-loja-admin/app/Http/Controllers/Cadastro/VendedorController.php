@@ -44,7 +44,7 @@ class VendedorController extends Controller
         try {
             $req["status_id"]                = config('constantes.status.ATIVO');
             Vendedor::Create($req);
-            return redirect()->route("vendedor.index")->with("msg_sucesso", "inserido com sucesso");
+            return redirect()->route("vendedor.index")->with("msg_sucesso", "Registro Inserido com Sucesso");
         } catch (\Throwable $th) {
             return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
 
@@ -93,7 +93,7 @@ class VendedorController extends Controller
         try {
             $vendedor = Vendedor::find($id);
             $vendedor->delete();
-            return redirect()->route("vendedor.index")->with("msg_sucesso", "excluido com sucesso");
+            return redirect()->route("vendedor.index")->with("msg_sucesso", "Registro Excluído com Sucesso");
         } catch (\Throwable $th) {
             return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
         }

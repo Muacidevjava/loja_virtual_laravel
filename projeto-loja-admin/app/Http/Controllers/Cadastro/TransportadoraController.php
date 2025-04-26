@@ -45,7 +45,7 @@ public function index(Request $request)
         try {
             $req["status_id"]                = config('constantes.status.ATIVO');
             Transportadora::Create($req);
-            return redirect()->route("transportadora.index")->with("msg_sucesso", "inserido com sucesso");
+            return redirect()->route("transportadora.index")->with("msg_sucesso", "Registro Inserido com Sucesso");
         } catch (\Throwable $th) {
             return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
 
@@ -94,7 +94,7 @@ public function index(Request $request)
         try {
             $transportadora = Transportadora::find($id);
             $transportadora->delete();
-            return redirect()->route("transportadora.index")->with("msg_sucesso", "excluido com sucesso");
+            return redirect()->route("transportadora.index")->with("msg_sucesso", "Registro Excluído com Sucesso");
         } catch (\Throwable $th) {
             return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
         }
