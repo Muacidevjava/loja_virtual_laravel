@@ -9,6 +9,7 @@ use App\Models\Produto;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
 use stdClass;
+use Storage;
 
 class ProdutoController extends Controller
 {
@@ -117,8 +118,19 @@ class ProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        try {
+            $produto = Produto::find($id);
+            if($produto->imagem){
+                if(Storage::exists($produto->imagem)){
+                    Storage::delete($produto->imagem);
+                }
+            }
+            $produto->delete();
+            return redirect()->route("produto.index")->with("msg_sucesso", "excluido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 }
