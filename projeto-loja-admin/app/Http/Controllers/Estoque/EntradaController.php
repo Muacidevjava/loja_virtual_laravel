@@ -9,11 +9,17 @@ use Illuminate\Http\Request;
 
 class EntradaController extends Controller
 {
-    public function index(){
-        $dados["lista"]     = Entrada::get();
+    public function index(Request $request){
+        $filtro             = new \stdClass();
+        $filtro->data1      = $request->data1 ?? hoje();
+        $filtro->data2      = $request->data2 ??  hoje();
+        $filtro->produto_id = $request->produto_id ?? null;
+
+
+        $dados["lista"]     = Entrada::filtro($filtro);
         $dados["produtos"]  = Produto::get();
+        $dados["filtro"]    = $filtro;
         $dados["entradaJs"] = true;
-        
         return view("Estoque.Entrada.Create", $dados);
     }
 
