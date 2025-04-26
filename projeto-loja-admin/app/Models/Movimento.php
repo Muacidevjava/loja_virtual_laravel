@@ -42,5 +42,15 @@ class Movimento extends Model
         return $this->belongsTo(Saida::class);
     }
 
+    public static function saldoEstoque($produto_id){
+        $resultado = Movimento::where("produto_id", $produto_id)
+        ->select("saldoestoque as saldo")
+        ->orderBy("id","Desc")
+        ->limit(1)
+        ->first() ;
+        
+        return ($resultado) ? $resultado->saldo : 0;
+    }
+
 }
 
