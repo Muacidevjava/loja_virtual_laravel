@@ -44,7 +44,11 @@ class ProdutoController extends Controller
      */
     public function store(ProdutoRequest $request)
     {
+<<<<<<< HEAD
         $req = request()->except(["_token"]);
+=======
+        $req = $request->except(["_token"]);
+>>>>>>> 244f41561a9076f99b2e0d8572fa26020e954701
         try {
             $req['estoque_inicial']	         = getFloat($req['estoque_inicial']);
             $req['estoque_maximo']	         = getFloat($req['estoque_maximo']);
@@ -53,8 +57,13 @@ class ProdutoController extends Controller
             $req['margem_lucro']	         = getFloat($req['margem_lucro']);
             $req['preco_venda']	             = getFloat($req['preco_venda']);
             $req["status_id"]                = config('constantes.status.ATIVO');
+<<<<<<< HEAD
             if(request()->hasFile('imagem') && request()->imagem->isValid()){
                 $file = request()->file("imagem");
+=======
+            if($request->hasFile('imagem') && $request->imagem->isValid()){
+                $file = $request->file("imagem");
+>>>>>>> 244f41561a9076f99b2e0d8572fa26020e954701
                 $req["imagem"] = $file->store("upload/produtos");
             }
             Produto::Create($req);
