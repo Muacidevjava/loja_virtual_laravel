@@ -50,7 +50,10 @@ Route::resource("/vendedor", VendedorController::class);
 Route::resource("/transportadora", TransportadoraController::class);
 Route::get("/transportadora/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNPJ"])->name("buscarCNPJ");
 
+
+Route::get("/produto/pesquisa",[ProdutoController::class,"pesquisa"])->name('produto.pesquisa');
 Route::resource("/produto", ProdutoController::class);
+
 
 Route::resource('/imagem',ImagemController::class);
 
@@ -61,6 +64,8 @@ Route::resource('/imagemproduto', ImagemProdutoController::class);
 Route::resource("/itemvariacaograde", ItemVariacaoGradeController::class);
 
 Route::get("/entrada", [EntradaController::class,"index"])->name("entrada.index");
+
+Route::post("/entrada/salvarJs", [EntradaController::class,"salvarJs"])->name("entrada.salvarJs");
 
 
 
