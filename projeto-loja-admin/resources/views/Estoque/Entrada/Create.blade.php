@@ -27,12 +27,12 @@
                     <div class="mostraFiltro bg-padrao mt-2 p-2 radius-4 border">
                         <div class="rows center-middle">
                             <div class="col-3">
-                                <label class="text-label d-block text-branco">Data 1</label>
+                                <label class="text-label d-block text-branco">Data Inicio</label>
                                 <input type="date" name="data1" value="{{ $filtro->data1 ?? null }}" class="form-campo">
                             </div>
                             <div class="col-3">
-                                <label class="text-label d-block text-branco">Data 2</label>
-                                <input type="date" name="categoria" value="{{ $filtro->data1 ?? null }}"
+                                <label class="text-label d-block text-branco">Data Fim</label>
+                                <input type="date" name="data2" value="{{ $filtro->data2 ?? null }}"
                                     class="form-campo">
                             </div>
                             <div class="col-4">
