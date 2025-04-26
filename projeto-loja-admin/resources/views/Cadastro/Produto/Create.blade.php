@@ -73,7 +73,7 @@
                             <div class="group-btn d-flex center-midlle">
                                 <select class="form-campo" name="categoria_id" id="cb_categoria_id">
                                     @foreach ($categorias as $cat)
-                                        <option value="{{ $cat->id }}">{{ $cat->id }} - {{ $cat->categoria }} </option>
+                                        <option value="{{ $cat->id }}">{{ $cat->id }} - {{ $cat->categoria }} </option> 
                                     @endforeach
                                 </select>
                                 <a href="javascript:;" onclick="abrirModal('#modalCategoria')"
