@@ -22,6 +22,8 @@ Route::get('/', [HomeController::class, "index"] )->name("home");
 Route::resource("/status", StatusController::class);
 
 Route::resource("/categoria", CategoriaController::class);
+Route::post("/categoria/salvarJs", [CategoriaController::class, "salvarJs"])->name('categoria.salvarJs');
+
 
 Route::resource("/unidade", UnidadeController::class);
 

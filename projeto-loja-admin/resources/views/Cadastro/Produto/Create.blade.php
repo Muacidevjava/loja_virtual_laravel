@@ -150,6 +150,6 @@ use App\Service\ConstanteService;
     </div>
 </div>
 
-
+@include('Cadastro.Categoria.modalCategoria')
 
 @endsection

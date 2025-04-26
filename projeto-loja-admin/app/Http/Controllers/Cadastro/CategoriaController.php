@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoriaRequest;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
+use stdClass;
 
 class CategoriaController extends Controller
 {
@@ -72,9 +73,22 @@ class CategoriaController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function salvarJs(Request $request){
+        $retorno = new stdClass;
+        $req = $request->except(["_token"]);
+        try {
+            Categoria::Create($req);
+            $retorno->tem_erro = false;
+            $retorno->lista = Categoria::get();
+            return response()->json($retorno);
+        } catch (\Throwable $th) {
+            $retorno->tem_erro = true;
+            $retorno->erro = $th->getMessage();
+            $retorno->lista = Categoria::get();
+            return response()->json($retorno);
+        }
+
+    }
     public function destroy(string $id)
     {
         try {
