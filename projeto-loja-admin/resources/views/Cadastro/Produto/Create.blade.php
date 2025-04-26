@@ -1,3 +1,7 @@
+<?php
+use App\Service\ConstanteService;
+?>
+
 
 @extends('template')
 @section('conteudo')
@@ -52,19 +56,9 @@
                         <div class="col-6 mb-3">
                             <label class="text-label">Origem</label>
                             <select class="form-campo" name="origem">
-                                <option value="0">Nacional </option>
-                                <option value="1">Estrangeira - Importação direta </option>
-                                <option value="2">Estrangeira - Adquirida no mercado interno </option>
-                                <option value="3">Nacional, com Importação &gt; 40% </option>
-                                <option value="4">Nacional, com produção conforme legislação citada nos Ajustes
-                                </option>
-                                <option value="5">Nacional, com Conteúdo de Importação &lt;= 40% </option>
-                                <option value="6">Estrangeira - Importação direta, sem similar nacional, constante
-                                    em lista da CAMEX </option>
-                                <option value="7">Estrangeira - Adquirida mercado interno, sem similar nacional,
-                                    constante em lista da CAMEX </option>
-                                <option value="8">Nacional, mercodoria ou bem com conteúdo de importação superior a
-                                    70% </option>
+                                @foreach (ConstanteService::listaOrigem() as $chave => $valor)
+                                    <option value="{{ $chave }}"> {{ $chave }} - {{ $valor }} </option>
+                                @endforeach
                             </select>
                         </div>
 
