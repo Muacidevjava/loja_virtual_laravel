@@ -90,7 +90,7 @@
                         <a href="">Grade Produto</a>
                         <ul>
                             <li><a href="{{ route('variacaograde.index') }}">Lista de Variação</a></li>
-                            <li><a href="itemvariacaograde">Item da Variação</a></li>
+                            <li><a href="{{ route('itemvariacaograde.index') }}">Item da Variação</a></li>
                         </ul>
                     </li>
 
