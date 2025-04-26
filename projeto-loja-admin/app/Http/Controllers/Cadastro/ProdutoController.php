@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cadastro;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProdutoRequest;
 use App\Models\Categoria;
 use App\Models\Produto;
 use App\Models\Unidade;
@@ -41,9 +42,28 @@ class ProdutoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProdutoRequest $request)
     {
-          
+        $req = request()->except(["_token"]);
+        try {
+            $req['estoque_inicial']	         = getFloat($req['estoque_inicial']);
+            $req['estoque_maximo']	         = getFloat($req['estoque_maximo']);
+            $req['estoque_minimo']	         = getFloat($req['estoque_minimo']);
+            $req['preco_custo']	             = getFloat($req['preco_custo']);
+            $req['margem_lucro']	         = getFloat($req['margem_lucro']);
+            $req['preco_venda']	             = getFloat($req['preco_venda']);
+            $req["status_id"]                = config('constantes.status.ATIVO');
+            if(request()->hasFile('imagem') && request()->imagem->isValid()){
+                $file = request()->file("imagem");
+                $req["imagem"] = $file->store("upload/produtos");
+            }
+            Produto::Create($req);
+            return redirect()->route("produto.index")->with("msg_sucesso", "inserido com sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+
+        }
+        
     }
 
     /**
