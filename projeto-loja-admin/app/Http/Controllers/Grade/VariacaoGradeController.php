@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Grade;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VariacaoGradeRequest;
 use App\Models\Imagem;
 use App\Models\Produto;
+use App\Models\VariacaoGrade;
 use Illuminate\Http\Request;
 
 class VariacaoGradeController extends Controller
@@ -14,7 +16,8 @@ class VariacaoGradeController extends Controller
      */
     public function index()
     {
-        
+        $dados["lista"] = VariacaoGrade::get();
+        return view("Grade.VariacaoGrade.Index", $dados);
     }
 
     /**
@@ -28,9 +31,15 @@ class VariacaoGradeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VariacaoGradeRequest $request)
     {
-        //
+        $req = request()->except(["_token"]);
+        try {
+            VariacaoGrade::Create($req);
+            return redirect()->route("variacaograde.index")->with("msg_sucesso", "Registro Inserido com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 
     /**
@@ -46,7 +55,9 @@ class VariacaoGradeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dados["variacaograde"]     = VariacaoGrade::find($id);
+        $dados["lista"]    = VariacaoGrade::get();
+        return view('Grade.VariacaoGrade.Index', $dados);
     }
 
     /**
@@ -54,7 +65,13 @@ class VariacaoGradeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $req     =   $request->except(["_token","_method"]);
+        try {
+            VariacaoGrade::where("id", $id)->update($req);
+            return redirect()->route("variacaograde.index")->with('msg_sucesso', "item alterado com sucesso.");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 
     /**
@@ -62,6 +79,12 @@ class VariacaoGradeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $vendedor = VariacaoGrade::find($id);
+            $vendedor->delete();
+            return redirect()->route("variacaograde.index")->with("msg_sucesso", "Registro Excluído com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 }
