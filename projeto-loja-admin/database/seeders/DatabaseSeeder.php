@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             VendedorSeeder::class,
             TransportadoraSeeder::class,
             ProdutoSeeder::class,
+            TipoMovimentoSeeder::class,
             
 
         ]);
