@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cadastro;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ImagemRequest;
 use App\Models\Categoria;
 use App\Models\Imagem;
 use App\Models\ImagemProduto;
@@ -38,11 +39,11 @@ class ImagemController extends Controller
     {
         try {
             $img = new \stdClass();
-            $img->categoria_id = $request->categoria_id;
-            $img->titulo = $request->titulo;
+            $img->categoria_id = request()->categoria_id;
+            $img->titulo = request()->titulo;
 
-            if ($request->hasFile('imagem') && $request->imagem->isValid()) {
-                $file = $request->file("imagem");
+            if (request()->hasFile('imagem') && request()->imagem->isValid()) {
+                $file = request()->file("imagem");
                 $img->imagem = $file->store("upload/imagens");
             }else{
                 throw new Exception("Selecione um imagem primeiramente");

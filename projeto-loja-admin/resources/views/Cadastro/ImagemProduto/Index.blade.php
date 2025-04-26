@@ -105,7 +105,7 @@
                                 <div class="rows">
                                     <div class="col-12 mb-0">
                                         <label class="text-label">Nome da Imagem</label>
-                                        <input type="text" name="titulo" class="form-campo">
+                                        <input type="text" name="titulo" required class="form-campo">
                                     </div>
                                     <div class="col-12 mb-3">
                                         <label class="text-label">Categoria</label>
