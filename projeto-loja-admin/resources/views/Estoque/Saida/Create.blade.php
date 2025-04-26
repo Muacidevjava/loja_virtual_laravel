@@ -28,24 +28,34 @@
                     <div class="mostraFiltro bg-padrao mt-2 p-2 radius-4 border">
                         <div class="rows center-middle">
                             <div class="col-3">
-                                <label class="text-label d-block text-branco">Data 1</label>
-                                <input type="date" name="data1" value="" class="form-campo">
+                                <label class="text-label d-block text-branco">Data Inicio</label>
+                                <input type="date" name="data1" value="{{ $filtro->data1 ?? null }}"
+                                    class="form-campo">
                             </div>
                             <div class="col-3">
-                                <label class="text-label d-block text-branco">Data 2</label>
-                                <input type="date" name="data2" value="" class="form-campo">
+                                <label class="text-label d-block text-branco">Data Fim</label>
+                                <input type="date" name="data2" value="{{ $filtro->data2 ?? null }}"
+                                    class="form-campo">
                             </div>
-                            <div class="col-3">
-                                <label class="text-label d-block text-branco">Produtos</label>
-                                <select class="form-campo">
-                                    <option>Opção</option>
+                            <div class="col-4">
+                                <label class="text-label d-block text-branco">Selecionar Produto </label>
+                                <select name="produto_id" class="form-campo">
+                                    <option value="">Selecione uma Produto</option>
+                                    @foreach ($produtos as $prod)
+                                        <option value="{{ $prod->id }}"
+                                            {{ ($filtro->produto_id ?? null) == $prod->id ? 'selected' : '' }}>
+                                            {{ $prod->nome }}</option>
+                                    @endforeach
                                 </select>
                             </div>
+
                             <div class="col-2 mt-4">
                                 <input type="submit" value="Pesquisar" class="w-100 btn btn-roxo text-uppercase">
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </form>
         </div>

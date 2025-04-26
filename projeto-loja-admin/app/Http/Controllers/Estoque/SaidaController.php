@@ -3,14 +3,23 @@
 namespace App\Http\Controllers\Estoque;
 
 use App\Http\Controllers\Controller;
+use App\Models\Produto;
 use App\Models\Saida;
 use Illuminate\Http\Request;
 
 class SaidaController extends Controller
 {
-    public function index(){
-        $dados["lista"]     = Saida::get();
-        $dados["saidaJs"]   = true;
+    public function index(Request $request){
+        $filtro             = new \stdClass();
+        $filtro->data1      = $request->data1 ?? hoje();
+        $filtro->data2      = $request->data2 ??  hoje();
+        $filtro->produto_id = $request->produto_id ?? null;
+
+
+        $dados["lista"]     = Saida::filtro($filtro);
+        $dados["produtos"]  = Produto::get();
+        $dados["filtro"]    = $filtro;
+        $dados["saidaJs"] = true;
         return view("Estoque.Saida.Create", $dados);
     }
 
