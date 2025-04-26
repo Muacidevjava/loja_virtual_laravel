@@ -81,7 +81,7 @@
                     <li class="subcat">
                         <a href="">Imagens</a>
                         <ul>
-                            <li><a href="imagem">Lista de Imagens</a></li>
+                            <li><a href="{{ route('imagem.index') }}">Lista de Imagens</a></li>
                         </ul>
                     </li>
 
