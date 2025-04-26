@@ -79,7 +79,7 @@ public function index(Request $request)
         try {
             $tranportadora = Transportadora::find($id);
             $tranportadora->update($req);
-            return redirect()->route("transportadora.index")->with("msg_sucesso", "inserido com sucesso");
+            return redirect()->route("transportadora.index")->with("msg_sucesso", "Registro Alterado com Sucesso");
         } catch (\Throwable $th) {
             return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
 

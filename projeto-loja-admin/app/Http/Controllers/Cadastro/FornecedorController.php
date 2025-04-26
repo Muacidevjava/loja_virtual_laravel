@@ -77,7 +77,7 @@ class FornecedorController extends Controller
         try {
             $fornecedor = Fornecedor::find($id);
             $fornecedor->update($req);
-            return redirect()->route("fornecedor.index")->with("msg_sucesso", "inserido com sucesso");
+            return redirect()->route("fornecedor.index")->with("msg_sucesso", "Registro Alterado com Sucesso");
         } catch (\Throwable $th) {
             return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
 

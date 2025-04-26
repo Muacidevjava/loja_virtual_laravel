@@ -78,7 +78,7 @@ class VendedorController extends Controller
         try {
             $vendedor = Vendedor::find($id);
             $vendedor->update($req);
-            return redirect()->route("vendedor.index")->with("msg_sucesso", "inserido com sucesso");
+            return redirect()->route("vendedor.index")->with("msg_sucesso", "Registro Alterado com Sucesso");
         } catch (\Throwable $th) {
             return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
 

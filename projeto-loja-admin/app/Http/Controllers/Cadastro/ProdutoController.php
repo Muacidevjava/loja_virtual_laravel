@@ -79,15 +79,39 @@ class ProdutoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dados["produto"]       = Produto::find($id);
+        $dados["categorias"]    = Categoria::get();
+        $dados["unidades"]      = Unidade::get();
+        $dados["categoriaJs"]   = true;
+        $dados["produtoJs"]     = true;
+        return View("Cadastro.Produto.Edit", $dados);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProdutoRequest $request, $id)
     {
-        //
+        $req = request()->except(["_token","estoque_inicial"]);
+        try {
+            $req['estoque_maximo']	         = getFloat($req['estoque_maximo']);
+            $req['estoque_minimo']	         = getFloat($req['estoque_minimo']);
+            $req['preco_custo']	             = getFloat($req['preco_custo']);
+            $req['margem_lucro']	         = getFloat($req['margem_lucro']);
+            $req['preco_venda']	             = getFloat($req['preco_venda']);
+            $req["status_id"]                = config('constantes.status.ATIVO');
+            $produto = Produto::find($id);
+            if(request()->hasFile('imagem') && request()->imagem->isValid()){
+                $file = request()->file("imagem");
+                $req["imagem"] = $file->store("upload/produto");
+            }
+            $produto->update($req);
+            return redirect()->route("produto.index")->with("msg_sucesso", "Registro Alterado com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+
+        }
+
     }
 
     /**
