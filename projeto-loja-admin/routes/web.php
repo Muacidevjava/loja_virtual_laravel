@@ -19,6 +19,7 @@ use App\Http\Controllers\Grade\ItemVariacaoGradeController;
 use App\Http\Controllers\Grade\VariacaoGradeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UtilController;
+use App\Http\Controllers\Venda\VendaController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -39,6 +40,7 @@ Route::resource("/tipocontacorrente", TipoContaCorrenteController::class);
 
 Route::resource("/contacorrente", ContaCorrenteController::class);
 
+Route::get("/cliente/pesquisa",[ClienteController::class,"pesquisa"])->name('cliente.pesquisa');
 Route::resource("/cliente", ClienteController::class);
 Route::get("/cliente/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNPJ"])->name("buscarCNPJ");
 
@@ -69,6 +71,8 @@ Route::post("/entrada/salvarJs", [EntradaController::class,"salvarJs"])->name("e
 
 Route::post("/saida/salvarJs", [SaidaController::class,"salvarJs"])->name("saida.salvarJs");
 Route::get("/saida", [SaidaController::class,"index"])->name("saida.index");
+
+Route::resource("/venda", VendaController::class);
 
 
 

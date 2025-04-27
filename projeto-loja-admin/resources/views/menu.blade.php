@@ -206,8 +206,8 @@
                     <li class="subcat">
                         <a href="">Venda</a>
                         <ul>
-                            <li><a href="venda">Lista de Vendas</a></li>
-                            <li><a href="venda/create">Cadastro de Venda</a></li>
+                            <li><a href="{{ route('venda.index') }}">Lista de Vendas</a></li>
+                            <li><a href="{{ route('venda.create') }}">Cadastro de Venda</a></li>
                         </ul>
                     </li>
 

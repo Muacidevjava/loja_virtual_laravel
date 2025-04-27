@@ -99,6 +99,9 @@
     @if (isset($saidaJs))
     <script type="text/javascript" src="{{ asset('assets/js/js_saida.js') }}"></script>
     @endif
+    @if (isset($vendaJs))
+    <script type="text/javascript" src="{{ asset('assets/js/js_venda.js') }}"></script>
+    @endif
 
     <script>
         $(function() {

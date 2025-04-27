@@ -86,6 +86,11 @@ class ClienteController extends Controller
         }
     }
     
+    public function pesquisa(){
+        $q          = $_GET["q"];
+        $clientes   = Cliente::where("nome_razao_social","like","%$q%")->get();
+        return response()->json($clientes);
+    }
 
     /**
      * Remove the specified resource from storage.
