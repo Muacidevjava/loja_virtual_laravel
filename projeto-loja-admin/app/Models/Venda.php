@@ -35,4 +35,9 @@ class Venda extends Model
     public function tipo_venda(){
         return $this->belongsTo(TipoVenda::class, 'tipo_venda_id');
     }
+
+    public function itens()
+    {
+        return $this->hasMany(ItemVenda::class);
+    }
 }

@@ -24,9 +24,14 @@ class Produto extends Model
     }
 
     public function imagens()
-        {
-            return $this->belongsToMany(Imagem::class, 'imagem_produtos', 'produto_id', 'imagem_id')->withPivot('id');
-        }
+    {
+        return $this->belongsToMany(Imagem::class, 'imagem_produtos', 'produto_id', 'imagem_id')->withPivot('id');
+    }
+     
+    public function itens()
+    {
+        return $this->hasMany(ItemVenda::class);
+    }
 
     public static function filtro($filtro, $paginas=0){
         $retorno = self::query();
