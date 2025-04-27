@@ -98,4 +98,11 @@ class VendedorController extends Controller
             return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
         }
     }
+
+    public function pesquisa(){
+        $q          = $_GET["q"];
+        $vendedors   = Vendedor::where("nome","like","%$q%")->get();
+
+        return response()->json($vendedors);
+    }
 }

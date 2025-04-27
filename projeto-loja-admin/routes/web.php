@@ -47,6 +47,7 @@ Route::get("/cliente/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNP
 Route::resource("/fornecedor", FornecedorController::class);
 Route::get("/fornecedor/util/buscarcnpj/{cnpj}", [UtilController::class, "buscarCNPJ"])->name("buscarCNPJ");
 
+Route::get("/vendedor/pesquisa",[VendedorController::class,"pesquisa"])->name('vendedor.pesquisa');
 Route::resource("/vendedor", VendedorController::class);
 
 

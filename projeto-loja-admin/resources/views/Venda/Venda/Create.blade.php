@@ -25,7 +25,7 @@
                         <div class="rows center-middle">
                             <div class="col-12">
                                 <label class="text-label d-block text-branco">Data </label>
-                                <input type="date" name="categoria" value="{{ hoje() }}" class="form-campo">
+                                <input type="date" name="data_venda" value="{{ hoje() }}" class="form-campo">
                             </div>
                             <div class="col-12">
                                 <label class="text-label d-block text-branco">Cliente</label>
@@ -46,10 +46,11 @@
                                 </div>
                             </div>
                             <div class="col-12 mt-2">
-                                <a href="javascript:;" onclick="inserirVenda()" class="btn btn-roxo text-uppercase">
-                                    Inserir</a>
-
+                                <button type="submit" class="btn btn-roxo text-uppercase">
+                                    Inserir
+                                </button>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

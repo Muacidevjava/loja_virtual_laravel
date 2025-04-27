@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Venda;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VendaRequest;
 use App\Models\Venda;
 use Illuminate\Http\Request;
 
@@ -29,9 +30,16 @@ class VendaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VendaRequest $request)
     {
-        //
+        $req = request()->except(["_token"]);
+        try {
+            $req["status_id"]           = config('constantes.status.ATIVO');
+            $vendaNova                  = Venda::Create(objToArray($req));
+            return redirect()->route("venda.edit", $vendaNova->id)->with("msg_sucesso", "Registro Inserido com Sucesso");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with("msg_erro", "Erro: " . $th->getMessage());
+        }
     }
 
     /**

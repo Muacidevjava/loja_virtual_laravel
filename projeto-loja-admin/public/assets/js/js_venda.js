@@ -227,6 +227,7 @@ function calcularDescontoItem(){
 function inserirVenda(){
 	var cliente_id		= $('#cliente_id').val();
 	var	vendedor_id		= $('#vendedor_id').val();
+	var data_venda  = $('input[name="data_venda"]').val(); // PEGANDO a data
 
 	if( (cliente_id == '--') || (cliente_id == '') ||(cliente_id == 'null') ||(cliente_id == null)) {
 		fecharModal();
@@ -241,6 +242,7 @@ function inserirVenda(){
 	   data:{
 	   		cliente_id 		: cliente_id,
 	   		vendedor_id 	: vendedor_id,
+			data_venda: data_venda, // Enviando a data também
 	   	},
 		 beforeSend: function (){
 		   giraGira();
